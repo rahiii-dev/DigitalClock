@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <h2>Digital Clock</h2>
+    <div class="clock">
+        <div class="clock_frame">
+            <div class="clock_screen">
+                <span class="hour">12</span>
+                <span >:</span>
+                <span class="minute">30</span>
+                <span >:</span>
+                <span class="second">59</span>
+                <span class="ampm">AM</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const second = document.querySelector('.second');
+        const minute = document.querySelector('.minute');
+        const hour= document.querySelector('.hour');
+        const ampm= document.querySelector('.ampm');
+
+        function time() {
+           const now = new Date();
+
+           const seconds = now.getSeconds();
+           if (seconds < 10) {
+            second.textContent = '0' + seconds;
+           }
+           else {
+            second.textContent = seconds;
+           }
+
+           const mins = now.getMinutes();
+           if (mins < 10) {
+            minute.textContent = '0' + mins;
+           }
+           else {
+           minute.textContent = mins;
+           }
+
+           const hours = now.getHours() % 12 || 12;
+        //    time.toLocaleString('en-US', { hour: 'numeric', hour12: true })
+        if (hours < 10) {
+            hour.textContent = '0' + hours;
+        }
+        else {
+            hour.textContent = hours;
+        }
+
+        const hoursTwo = now.toLocaleString('en-US', { hour: 'numeric', hour12: true });
+        hoursTwo.toString();
+
+        if (hoursTwo.includes("PM") === true) {
+            ampm.textContent = "PM"
+        }
+        else {
+            ampm.textContent = "AM"
+        }
+        
+
+        //    console.log(ampm);
+        }
+        setInterval(time , 1000)
+    </script>
+</body>
+</html>
